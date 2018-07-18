@@ -1,0 +1,7 @@
+---
+  - name: start frontend
+    service:
+      name: frontend
+      state: started
+     
+...

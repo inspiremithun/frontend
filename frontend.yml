@@ -1,0 +1,8 @@
+---
+- name: frontend app server 
+  hosts: frontend
+  become: true
+  gather_facts: false
+  roles:
+    - frontend
+...

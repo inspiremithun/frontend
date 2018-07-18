@@ -1,0 +1,4 @@
+#include task for frontend
+- include_tasks: dir.yml
+- include_tasks: gettar.yml
+- include_tasks: start.yml

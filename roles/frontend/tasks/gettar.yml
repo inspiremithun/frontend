@@ -1,0 +1,53 @@
+---
+  - name: install pre reqs
+    package: 
+      name: "{{item}}"
+      state: installed 
+    with_items: 
+      - gzip
+      - unzip 
+      
+      
+  - name: untar the nodejs
+    unarchive:
+      src: https://nodejs.org/dist/v4.8.6/node-v4.8.6-linux-x64.tar.xz
+      dest: /usr/local
+      remote_src: yes
+  - name: create a syslink
+    file: 
+      src: /usr/local/node-v4.8.6-linux-x64/bin/node
+      dest: /usr/local/bin/nodejs
+      mode: 0777
+      state: link
+      force: yes
+ 
+  - name: unzip the tar of frontend 
+    unarchive: 
+      src: https://github.com/udbc/front-end/archive/v4.0.tar.gz
+      dest: /opt/apps/frontend/releases
+      extra_opts: [--strip-components=1]
+      remote_src: yes
+      
+      
+  - name: Create symlink
+    file:
+      src: /opt/apps/frontend/releases
+      dest: /opt/frontend
+      state: link
+      force: yes
+      
+  - name: npm install
+    npm: 
+      name: npm
+      path: /opt/frontend
+      global: yes
+     
+      
+  - name: download file from a file path
+    get_url:
+      url: https://raw.githubusercontent.com/minidegree/front-end/master/scripts/frontend
+      dest:  /etc/init.d/
+      owner: root
+      group: root
+      mode: 0755
+...

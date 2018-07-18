@@ -1,0 +1,6 @@
+---
+  - name: Stop service frontend, if running
+    service:
+      name: frontend
+      state: stopped
+...
