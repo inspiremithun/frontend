@@ -1,2 +1,2 @@
 # frontend
-Devops Week2
+FrontEnd Application of mogambo app
